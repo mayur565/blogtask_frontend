@@ -50,7 +50,7 @@ export default function DashboardPage() {
                 <div>
                   <h5 className="card-title">{blog.title}</h5>
                   <p className="card-subtitle text-muted mb-2">
-                    Category: {blog.category}
+                    Category : {blog.category}
                   </p>
                   <p className="card-text">{blog.content}</p>
                   {/* <p className="text-muted">
