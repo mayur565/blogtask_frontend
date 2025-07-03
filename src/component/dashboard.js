@@ -53,9 +53,9 @@ export default function DashboardPage() {
                     Category: {blog.category}
                   </p>
                   <p className="card-text">{blog.content}</p>
-                  <p className="text-muted">
+                  {/* <p className="text-muted">
                     <small>Tags: {blog.tags?.join(", ")}</small>
-                  </p>
+                  </p> */}
                   <p className="card-subtitle text-muted mb-2">
                     Author: {blog.author.name}
                   </p>
