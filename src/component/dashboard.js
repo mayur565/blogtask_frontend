@@ -15,6 +15,8 @@ export default function DashboardPage() {
   };
 
   const deleteBlog = async (id) => {
+      const confirm = window.confirm("Are you sure you want to delete this blog?");
+    if (!confirm) return;
     await api.delete(`/api/blog/${id}`);
     fetchBlogs();
   };

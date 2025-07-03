@@ -2,25 +2,16 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+  const { isLoggedIn, logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setIsLoggedIn(false);
+    logout(); 
     router.push("/login");
   };
-
-  useEffect(() => {}, [isLoggedIn]);
 
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -36,17 +27,30 @@ export default function Navbar() {
           </li>
           {isLoggedIn ? (
             <>
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link" href="/blog-form">
                   Create Blog
                 </Link>
-              </li> */}
-              <button onClick={handleLogout}>logout</button>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
             </>
           ) : (
-            <Link className="nav-link" href="/login">
-              Login
-            </Link>
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" href="/login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/register">
+                  Register
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
